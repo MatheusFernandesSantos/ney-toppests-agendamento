@@ -84,3 +84,29 @@ button:hover {
     color: #ccc;
     border-left: 4px solid #4CAF50;
 }
+
+/* Botão remover inicialmente invisível */
+.remove-btn {
+    background-color: #e74c3c;
+    border: none;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    float: right;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Exibir botão ao passar mouse no item da lista */
+#appointmentsList li:hover .remove-btn {
+    opacity: 1;
+}
+
+/* Para manter texto alinhado ao lado esquerdo e botão no canto direito */
+#appointmentsList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
