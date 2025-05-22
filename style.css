@@ -1,51 +1,86 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    text-align: center;
     margin: 0;
-    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #111;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
 }
 
 .container {
-    width: 50%;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px gray;
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 480px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #4CAF50;
+}
+
+form h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #fff;
+    text-align: center;
 }
 
 input, select, button {
-    display: block;
-    width: 90%;
-    padding: 10px;
-    margin: 10px auto;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 6px;
     font-size: 16px;
+    background-color: #333;
+    color: #fff;
+}
+
+input::placeholder {
+    color: #aaa;
 }
 
 button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    cursor: pointer;
+    background-color: #4CAF50;
     font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #45a049;
 }
 
-ul {
+.appointments {
+    margin-top: 30px;
+}
+
+.appointments h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #4CAF50;
+    text-align: center;
+}
+
+#appointmentsList {
     list-style: none;
     padding: 0;
+    font-size: 14px;
 }
 
-li {
-    background: #ddd;
+#appointmentsList li {
+    background-color: #2e2e2e;
     padding: 10px;
-    margin: 5px;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    color: #ccc;
+    border-left: 4px solid #4CAF50;
 }
