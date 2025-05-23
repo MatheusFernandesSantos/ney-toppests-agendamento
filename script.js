@@ -4,6 +4,64 @@ document.addEventListener('DOMContentLoaded', () => {
     const appointmentsList = document.getElementById('appointmentsList');
     const dateInput = document.getElementById('date');
 
+    const nameSelect = document.getElementById('nameSelect');
+    const phoneSelect = document.getElementById('phoneSelect');
+    const emailSelect = document.getElementById('emailSelect');
+
+    // Função para preencher os selects com placeholder
+    function fillSelect(selectElement, optionsArray, placeholder) {
+        const defaultOption = document.createElement('option');
+        defaultOption.text = placeholder;
+        defaultOption.value = '';
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        selectElement.appendChild(defaultOption);
+
+        optionsArray.forEach(option => {
+            const opt = document.createElement('option');
+            opt.text = option;
+            opt.value = option;
+            selectElement.appendChild(opt);
+        });
+    }
+
+    const names = [
+        "Adriana", "Afonso", "Alex", "Alice", "Aline", "Amanda", "Anderson", "André", "Antônia", "Arthur",
+        "Barbara", "Beatriz", "Benício", "Bernardo", "Bianca", "Bruno", "Bryan", "Caio", "Camila", "Carla",
+        "Carlos", "Carolina", "Catarina", "Cauã", "Cecília", "Clara", "Cláudio", "Cristina", "César", "Daniel",
+        "Daniele", "Davi", "Débora", "Diego", "Eduardo", "Elena", "Elias", "Elisa", "Emanuel", "Emilly",
+        "Enzo", "Erick", "Estela", "Eva", "Fábio", "Fernanda", "Felipe", "Fernando", "Flávia", "Francisco",
+        "Gabriel", "Gabriela", "Giovana", "Gisele", "Guilherme", "Gustavo", "Heitor", "Helena", "Henrique", "Hugo",
+        "Ian", "Igor", "Ingrid", "Isabel", "Isabela", "Isadora", "Isaque", "Ítalo", "Ivana", "Ivo",
+        "Jéssica", "Joana", "João", "Joaquim", "Jonas", "Jonathan", "José", "Julia", "Juliana", "Júlio",
+        "Karen", "Karina", "Kauã", "Kelly", "Kevin", "Kléber", "Lara", "Larissa", "Laura", "Leandro",
+        "Leonardo", "Letícia", "Lia", "Lígia", "Lilian", "Livia", "Lorena", "Lucas", "Luciana", "Luiz",
+        "Luiza", "Luna", "Manuela", "Marcela", "Marcelo", "Marcos", "Maria", "Mariana", "Marina", "Mateus",
+        "Matheus", "Melissa", "Miguel", "Milena", "Murilo", "Natália", "Nathan", "Nicole", "Nicolas", "Noah",
+        "Olga", "Otávio", "Paola", "Patrícia", "Paulo", "Pedro", "Pietro", "Priscila", "Rafael", "Rafaela",
+        "Raul", "Rebeca", "Renan", "Renata", "Ricardo", "Roberta", "Rodrigo", "Rogério", "Rosa", "Rúbia",
+        "Sabrina", "Samuel", "Sandra", "Sara", "Sebastião", "Selma", "Sérgio", "Sofia", "Sophia", "Sueli",
+        "Tainá", "Tainara", "Talita", "Tatiane", "Tatiana", "Teodoro", "Thiago", "Tomas", "Tomás", "Valentina",
+        "Valéria", "Vanessa", "Vera", "Verônica", "Vicente", "Vicentina", "Victor", "Victoria", "Vinícius", "Vitor",
+        "Vitória", "Vivian", "Vivi", "Vladimir", "Wallace", "Walter", "Wanderley", "Wellington", "Wesley", "William",
+        "Wilson", "Xavier", "Yara", "Yasmin", "Yuri", "Zacarias", "Zélia", "Zenaide", "Zilda", "Zuleica"
+    ];
+
+    const phones = names.map((_, i) => {
+        const num = (100000000 + i).toString().padStart(9, '0');
+        return `(99) ${num.slice(0, 5)}-${num.slice(5)}`;
+    });
+
+    const emails = names.map(name => {
+        const normalized = name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        return `${normalized}@email.com`;
+    });
+
+    // Preenche os selects com placeholder
+    fillSelect(nameSelect, names, 'Nome');
+    fillSelect(phoneSelect, phones, 'Telefone');
+    fillSelect(emailSelect, emails, 'Email');
+
     // Define data mínima para hoje
     const today = new Date().toISOString().split('T')[0];
     dateInput.setAttribute('min', today);
@@ -28,18 +86,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     generateTimeSlots();
 
+    // Função para resetar selects para placeholder
+    function resetSelects() {
+        nameSelect.selectedIndex = 0;
+        phoneSelect.selectedIndex = 0;
+        emailSelect.selectedIndex = 0;
+    }
+
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        const name = document.getElementById('name').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const email = document.getElementById('email').value.trim();
+        const name = nameSelect.value;
+        const phone = phoneSelect.value;
+        const email = emailSelect.value;
         const date = dateInput.value;
         const service = document.getElementById('service').value;
         const time = timeSelect.value;
 
-        // Formatação da data e hora para exibição no prompt confirm
-        // Ajuste para horário Brasil (UTC-3) com Intl.DateTimeFormat
         const dateTimeBr = new Date(`${date}T${time}:00`);
         const options = {
             timeZone: 'America/Sao_Paulo',
@@ -52,36 +115,36 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         const dateTimeBrFormatted = new Intl.DateTimeFormat('pt-BR', options).format(dateTimeBr);
 
-        // Primeiro prompt de confirmação com data/hora Brasil
         const confirmation = confirm(`Confirma agendamento para ${name} no dia e horário (Brasil): ${dateTimeBrFormatted} para ${service}?`);
 
         if (confirmation) {
             const li = document.createElement('li');
             li.textContent = `${date} às ${time} - ${name} (${phone}, ${email}) - Serviço: ${service}`;
 
-            // Criar botão remover
             const removeBtn = document.createElement('button');
             removeBtn.textContent = 'Remover';
             removeBtn.classList.add('remove-btn');
             removeBtn.title = 'Remover agendamento';
 
-            // Evento para remover o agendamento ao clicar no botão
             removeBtn.addEventListener('click', () => {
                 if (confirm('Tem certeza que deseja remover este agendamento?')) {
                     appointmentsList.removeChild(li);
+                    resetSelects();
                 }
             });
 
-            // Inserir botão no li (mantendo texto e botão alinhados)
             li.appendChild(removeBtn);
-
             appointmentsList.appendChild(li);
 
-            // Segundo prompt de sucesso
             alert(`Agendamento marcado com sucesso para ${dateTimeBrFormatted}!`);
 
             form.reset();
-            dateInput.setAttribute('min', today);  // Reforça a data mínima após reset
+            dateInput.setAttribute('min', today);
+
+            resetSelects();  // resetar selects após confirmar agendamento
+        } else {
+            // Usuário cancelou a confirmação do agendamento
+            resetSelects();
         }
     });
 });
