@@ -1,6 +1,6 @@
 # Projeto de Sistema de Agendamento para Salão de Cabeleireiro
 
-Este relatório apresenta o desenvolvimento e os resultados do projeto de criação de uma solução digital voltada à otimização do processo de agendamento de serviços em um salão de cabeleireiro. 
+Este relatório apresenta o desenvolvimento e os resultados do projeto de criação de uma solução digital voltada à otimização do processo de agendamento de serviços em um salão de cabeleireiro.
 
 A iniciativa partiu da constatação de deficiências nos métodos manuais utilizados por pequenos empreendedores do setor, que enfrentam desafios relacionados à organização, imprecisão nos agendamentos e sobrecarga operacional.
 
@@ -11,6 +11,17 @@ O projeto foi desenvolvido no contexto do **Projeto Integrador (PI)** da **UNIVE
 A solução desenvolvida busca **automatizar o processo de agendamento**, reduzindo erros, otimizando o tempo de atendimento e proporcionando maior comodidade aos clientes por meio de uma **interface intuitiva e acessível**.
 
 Este relatório detalha as **etapas do desenvolvimento**, as **tecnologias utilizadas** e os **resultados alcançados** com a implementação do sistema.
+
+---
+
+## 📸 Demonstrações
+
+### Tela de Agendamento
+![Tela de Agendamento](imagens/agendamento.jpg)
+<!-- Exemplo: substitua 'imagens/agendamento.png' pelo caminho correto da imagem -->
+
+### Banco de Dados
+![Tela do Banco de Dados](imagens/banco.jpg)
 
 ---
 
@@ -47,12 +58,8 @@ O desenvolvimento foi orientado pelo **Design Thinking**, seguindo as etapas de:
 ---
 
 ## Status do Projeto
-
-🚧 **Em desenvolvimento**  
-Ou  
+ 
 ✅ **Concluído**  
-
-*(Escolha conforme o estado atual do projeto)*
 
 ---
 
@@ -69,7 +76,9 @@ Ou
 ## Contato
 
 Em caso de dúvidas ou sugestões, entre em contato:  
-**Matheus Fernandes Santos** - [LinkedIn](#) | [Email](#)  
+**Matheus Fernandes Santos**  
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/sfmatheus/)  
+<!-- Link para seu perfil -->
 
 ---
 
